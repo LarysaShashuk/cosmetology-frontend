@@ -1,0 +1,25 @@
+.blogItemWrap {
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 70px;
+  padding: 20px;
+}
+
+.contentHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  color: unset;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.buttonsWrap {
+  margin-bottom: 15px;
+
+  .deleteButton {
+    margin-left: 15px;
+  }
+}
