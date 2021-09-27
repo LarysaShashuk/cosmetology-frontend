@@ -6,32 +6,20 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import {ArticleCardTypes} from '../../types/types';
 import ConfirmationWindow from '../common/confirmationWindow/ConfirmationWindow';
 import styles from './ArticleBigCard.module.scss';
 
-interface IsErrorProps {
-  hasError: boolean;
-  errorStatusCode: string;
-  errorMessage: string;
-}
 
-interface ArticleBigCardTypes {
-  article: any;
-  isFetching?: boolean;
-  isError?: IsErrorProps;
-  handleFormOpening: any;
-  handleRemoveArticle: any;
-}
 
-const ArticleBigCard: React.FC<ArticleBigCardTypes> = (props) => {
-  const { article, handleFormOpening, handleRemoveArticle } = props;
-  const { id, title, text } = article;
+const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
+  const { article, handleFormOpening, handleDeleteArticle } = props;
+  const { _id, title, text } = article;
 
   const [confirmationWindowIsOpen, setConfirmationWindowOpen] = useState(false);
   const [isArticleDeleted, setArticleDeleted] = useState(false);
@@ -114,7 +102,7 @@ const ArticleBigCard: React.FC<ArticleBigCardTypes> = (props) => {
         <ConfirmationWindow
           title='Are you sure you want to delete this article?'
           deleteAction={() => {
-            handleRemoveArticle(id);
+            handleDeleteArticle(_id);
             setConfirmationWindowOpen(false);
             setArticleDeleted(true);
           }}

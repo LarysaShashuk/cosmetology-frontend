@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Blog from '../blog/Blog';
 import ArticlePage from '../atriclePage/ArticlePage';
-
 import styles from './App.module.scss';
 
 function App() {

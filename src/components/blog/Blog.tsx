@@ -1,23 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { loadArticles } from '../../redux/actions/blogActions';
+import { RootState } from '../../types/types';
 import Placeholder from '../common/placeholder/Placeholder';
 import NewArticle from '../newArticle/NewArticle';
 import BlogItem from './BlogItem';
 import styles from './Blog.module.scss';
 
-interface blogItemProps {
-  id: string;
-  title: string;
-  text: string;
-}
 
-interface State {
-  blog: blogItemProps[];
-}
+const Blog = () => {
+  let dispatch = useDispatch();
 
-const Blog = (props: State) => {
-  const { blog } = props;
+  let { articles } = useSelector((state: RootState) =>  state.blog);
+
+  useEffect(() => {
+    dispatch(loadArticles());
+  }, [dispatch]);
 
   return (
     <div className={styles.blogPageWrap}>
@@ -26,20 +25,14 @@ const Blog = (props: State) => {
       <NewArticle />
 
       <div className={styles.blogGrid}>
-        {blog.map((item: blogItemProps) => (
-          <BlogItem key={item.id} article={item} />
+        {articles && articles.map((item) => (
+          <BlogItem key={item._id} article={item} />
         ))}
       </div>
 
-      {
-        blog.length === 0 && <Placeholder/>
-      }
+      {articles && articles.length === 0 && <Placeholder />}
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  blog: state.blog,
-});
-
-export default connect(mapStateToProps)(Blog);
+export default Blog;

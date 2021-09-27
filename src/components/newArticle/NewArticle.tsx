@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { addArticle } from '../../actions';
+import {NewArticleType} from '../../types/types';
+import { addArticle } from '../../redux/actions';
 import styles from './NewArticle.module.scss';
 import ArticleForm from './ArticleForm';
 
-interface MyFormValues {
-  id: string;
-  title: string;
-  text: string;
-}
-
-function NewArticle(props: any) {
+function NewArticle() {
   const [isAddArticleVisible, setAddArticleVisible] = useState(false);
-  const createId = () => new Date().getTime().toString();
-  const initialValues: MyFormValues = { id: createId(), title: '', text: '' };
+  const initialValues: NewArticleType = {  title: '', text: '' };
 
+  let dispatch: any = useDispatch();
   const handleAddArticle = (newOne: any) => {
-    const { dispatch } = props;
-
     if (newOne.title && newOne.text) {
       dispatch(addArticle(newOne));
     }
@@ -33,13 +26,8 @@ function NewArticle(props: any) {
   const toggleButton = (text: string, func: any) => {
     return (
       <div className={styles.toggleButton}>
-        <Tooltip title={text} placement='right-start'>
-          <Fab
-            size='small'
-            color='primary'
-            aria-label='add'
-            onClick={() => func()}
-          >
+        <Tooltip title={text} placement="right-start">
+          <Fab size="small" color="primary" aria-label="add" onClick={() => func()}>
             <AddIcon />
           </Fab>
         </Tooltip>
@@ -55,7 +43,7 @@ function NewArticle(props: any) {
           initialValues={initialValues}
           handleReduxAction={handleAddArticle}
           handleClose={() => setAddArticleVisible(false)}
-          heading='New article adding...'
+          heading="New article adding..."
           isAddingArticle
         />
       )}
@@ -63,4 +51,4 @@ function NewArticle(props: any) {
   );
 }
 
-export default connect()(NewArticle);
+export default NewArticle;

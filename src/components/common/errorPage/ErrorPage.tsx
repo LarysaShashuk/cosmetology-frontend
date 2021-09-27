@@ -1,11 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import styles from './ErrorPage.module.scss';
 
-interface ErrorPageProps {
-statusCode?: string;
-errorMessage: string;
-}
+import {ErrorPageProps} from '../../../types/types';
+import styles from './ErrorPage.module.scss';
 
 const ErrorPage: React.FC<ErrorPageProps> =(props) =>{
 const {statusCode, errorMessage} = props;

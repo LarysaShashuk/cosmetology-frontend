@@ -1,57 +1,45 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { updateArticle, removeArticle } from '../../actions';
+import {BlogItemType, ArticleType} from '../../types/types';
+import { updateArticle, deleteArticle } from '../../redux/actions';
 import ArticleForm from '../newArticle/ArticleForm';
 import ArticleSmallCard from './ArticleSmallCard';
 
-interface ArticleProps {
-  id: string;
-  title: string;
-  text: string;
-}
 
-interface BlogItemProps {
-  article: ArticleProps;
-  dispatch: any;
-}
 
-function BlogItem(props: BlogItemProps) {
+function BlogItem(props: BlogItemType) {
   const { article } = props;
-  const [isEditArticleVisible, setEditArticleVisible] = useState(false);
+   let dispatch: any = useDispatch();
 
-  const handleUpdateArticle = (undatedArticle: ArticleProps) => {
-    const { dispatch } = props;
+  const [isUpdateArticleVisible, setUpdateArticleVisible] = useState(false);
 
-    dispatch(updateArticle(undatedArticle));
-
+  const handleUpdateArticle = (updatedArticle: ArticleType) => {
+    dispatch(updateArticle(updatedArticle));
     return;
   };
 
-  const handleRemoveArticle = (articleID: any) => {
-    const { dispatch } = props;
-
-    dispatch(removeArticle(articleID));
-
+  const handleDeleteArticle = (articleID: string) => {
+    dispatch(deleteArticle(articleID));
     return;
   };
 
   return (
     <>
-      {isEditArticleVisible && (
+      {isUpdateArticleVisible && (
         <ArticleForm
           initialValues={article}
           handleReduxAction={handleUpdateArticle}
-          handleClose={() => setEditArticleVisible(false)}
+          handleClose={() => setUpdateArticleVisible(false)}
         />
       )}
       <ArticleSmallCard
         article={article}
-        handleFormOpening={() => setEditArticleVisible(true)}
-        handleRemoveArticle={handleRemoveArticle}
+        handleFormOpening={() => setUpdateArticleVisible(true)}
+        handleDeleteArticle={handleDeleteArticle}
       />
     </>
   );
 }
 
-export default connect()(BlogItem);
+export default BlogItem;

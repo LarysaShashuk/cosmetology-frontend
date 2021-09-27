@@ -12,24 +12,13 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import {ArticleCardTypes} from '../../types/types';
 import ConfirmationWindow from '../common/confirmationWindow/ConfirmationWindow';
 import styles from './ArticleSmallCard.module.scss';
 
-interface ArticleProps {
-  id: string;
-  title: string;
-  text: string;
-}
-
-interface ArticleCardProps {
-  article: ArticleProps;
-  handleFormOpening: any;
-  handleRemoveArticle: any;
-}
-
-function ArticleSmallCard(props: ArticleCardProps) {
-  const { article, handleFormOpening, handleRemoveArticle } = props;
-  const { text, title, id } = article;
+function ArticleSmallCard(props: ArticleCardTypes) {
+  const { article, handleFormOpening, handleDeleteArticle } = props;
+  const { text, title, _id } = article;
 
   const [confirmationWindowIsOpen, setConfirmationWindowOpen] = useState(false);
 
@@ -40,8 +29,8 @@ function ArticleSmallCard(props: ArticleCardProps) {
   return (
     <>
       <Card className={styles.blogItemWrap}>
-        <CardActionArea>
-          <Link className={styles.link} to={`/blog/${id}`}>
+        <CardActionArea className={styles.blogItemInnerWrap}>
+          <Link className={styles.link} to={`/blog/${_id}`}>
             <CardContent>
               <Typography gutterBottom variant='h5' component='h2'>
                 {title}
@@ -54,7 +43,7 @@ function ArticleSmallCard(props: ArticleCardProps) {
         </CardActionArea>
         <CardActions className={styles.actionsWrap}>
           <Button size='small' variant='contained' color='primary'>
-            <Link className={styles.link} to={`/blog/${id}`}>
+            <Link className={styles.link} to={`/blog/${_id}`}>
               Read more
             </Link>
           </Button>
@@ -88,7 +77,7 @@ function ArticleSmallCard(props: ArticleCardProps) {
       {confirmationWindowIsOpen && (
         <ConfirmationWindow
           title='Are you sure you want to delete this article?'
-          deleteAction={() => handleRemoveArticle(id)}
+          deleteAction={() => handleDeleteArticle(_id)}
           cancelAction={() => {
             setConfirmationWindowOpen(false);
           }}

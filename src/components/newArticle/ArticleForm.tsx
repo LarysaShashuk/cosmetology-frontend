@@ -10,24 +10,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
+import {ArticleFormPropsType} from '../../types/types';
 import styles from './ArticleForm.module.scss';
 
-interface MyFormValues {
-  id: string;
-  title: string;
-  text: string;
-}
-
-interface ArticleFormProps {
-  initialValues: MyFormValues;
-  handleReduxAction: any;
-  handleClose: any;
-  heading?: string;
-  isAddingArticle?: boolean;
-  isArticlePage?: boolean;
-}
-
-export default function ArticleForm(props: ArticleFormProps) {
+export default function ArticleForm(props: ArticleFormPropsType) {
   const {
     initialValues,
     handleReduxAction,

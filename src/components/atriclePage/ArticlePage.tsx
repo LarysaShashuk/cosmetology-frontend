@@ -1,75 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateArticle, deleteArticle } from '../../redux/actions';
 
-import { updateArticle, removeArticle } from '../../actions';
-
+import { loadSingleArticle } from '../../redux/actions/blogActions';
+import {ArticleType, UseParamsTypes, RootState} from '../../types/types';
 import ArticleForm from '../newArticle/ArticleForm';
 import ArticleBigCard from './ArticleBigCard';
-import styles from './ArticlePage.module.scss'
+import styles from './ArticlePage.module.scss';
 
-interface ParamTypes {
-  id: string;
-}
 
-interface BlogItemProps {
-  id: string;
-  title: string;
-  text: string;
-}
+const ArticlePage = () => {
+  const [isUpdateArticleVisible, setUpdateArticleVisible] = useState(false);
+  const { id } = useParams<UseParamsTypes>();
+  let dispatch = useDispatch();
+  let { article } = useSelector((state: RootState) => state.blog);
 
-interface State {
-  blog: BlogItemProps[];
-  dispatch:any;
-}
+  useEffect(() => {
+    dispatch(loadSingleArticle(id));
+  }, [dispatch, id]);
 
-const ArticlePage = (props: State) => {
-
-   const {blog} = props;
-  const { id } = useParams<ParamTypes>();
-
-  const article = blog.find(article => article.id === id) ?? {id:'', title:'', text:''};
-
-  const [isEditArticleVisible, setEditArticleVisible] = useState(false);
-
-  const handleUpdateArticle = (undatedArticle: BlogItemProps) => {
-    const { dispatch } = props;
-
-    dispatch(updateArticle(undatedArticle));
-
+  const handleUpdateArticle = (updatedArticle: ArticleType) => {
+    dispatch(updateArticle(updatedArticle));
     return;
   };
 
-  const handleRemoveArticle = (articleID: any) => {
-    const { dispatch } = props;
-
-    dispatch(removeArticle(articleID));
-
+  const handleDeleteArticle = (articleID: string) => {
+    dispatch(deleteArticle(articleID));
     return;
   };
 
   return (
     <div className={styles.blogItemWrap}>
-      {isEditArticleVisible ? (
+      {isUpdateArticleVisible ? (
         <ArticleForm
           initialValues={article}
           handleReduxAction={handleUpdateArticle}
-          handleClose={() => setEditArticleVisible(false)}
+          handleClose={() => setUpdateArticleVisible(false)}
           isArticlePage
         />
       ) : (
-        <ArticleBigCard 
+        <ArticleBigCard
           article={article}
-          handleFormOpening={() => setEditArticleVisible(true)}
-          handleRemoveArticle={handleRemoveArticle}
+          handleFormOpening={() => setUpdateArticleVisible(true)}
+          handleDeleteArticle={handleDeleteArticle}
         />
       )}
     </div>
   );
 };
 
-const mapStateToProps = (state:any) => ({
-  blog: state.blog
-})
-
-export default connect(mapStateToProps)(ArticlePage);
+export default ArticlePage;
