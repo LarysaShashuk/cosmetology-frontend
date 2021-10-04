@@ -11,8 +11,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import {ArticleCardTypes} from '../../types/types';
-import ConfirmationWindow from '../common/confirmationWindow/ConfirmationWindow';
+import {ArticleCardTypes} from '../../../../types/types';
+import ConfirmationWindow from '../../../common/confirmationWindow/ConfirmationWindow';
 import styles from './ArticleBigCard.module.scss';
 
 
@@ -35,7 +35,7 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
               </Typography>
               <div className={styles.buttonsWrap}>
                 <Tooltip
-                  title='Edit'
+                  title='Редагувати'
                   placement='top-start'
                   onClick={handleFormOpening}
                 >
@@ -45,7 +45,7 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
                 </Tooltip>
 
                 <Tooltip
-                  title='Delete'
+                  title='Видалити'
                   placement='top-start'
                   className={styles.deleteButton}
                   onClick={() => {
@@ -67,7 +67,7 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
           <CardActions>
             <Button size='small' variant='contained' color='primary'>
               <Link className={styles.link} to='/'>
-                Back to blog
+                Повернутися до блогу
               </Link>
             </Button>
           </CardActions>
@@ -100,7 +100,7 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
       )}
       {confirmationWindowIsOpen && (
         <ConfirmationWindow
-          title='Are you sure you want to delete this article?'
+          title='Ви впевнені, що хочете видалити цю статтю?'
           deleteAction={() => {
             handleDeleteArticle(_id);
             setConfirmationWindowOpen(false);

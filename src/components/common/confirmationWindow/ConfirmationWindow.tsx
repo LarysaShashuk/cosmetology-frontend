@@ -25,10 +25,10 @@ export default function ConfirmationWindow(props: ConfirmationWindowProps) {
         </CardActionArea>
         <CardActions className={styles.actionsWrap}>
           <Button size="small" variant="contained" color="secondary" onClick={() => deleteAction()}>
-            Delete
+            Видалити
           </Button>
           <Button size="small" variant="contained" color="primary" onClick={() => cancelAction()}>
-            Cancel
+            Скасувати
           </Button>
         </CardActions>
       </Card>

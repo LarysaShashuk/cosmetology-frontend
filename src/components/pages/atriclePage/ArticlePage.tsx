@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateArticle, deleteArticle } from '../../redux/actions';
+import { updateArticle, deleteArticle } from '../../../redux/actions';
 
-import { loadSingleArticle } from '../../redux/actions/blogActions';
-import {ArticleType, UseParamsTypes, RootState} from '../../types/types';
-import ArticleForm from '../newArticle/ArticleForm';
-import ArticleBigCard from './ArticleBigCard';
+import { loadSingleArticle } from '../../../redux/actions/blogActions';
+import {ArticleType, UseParamsTypes, RootState} from '../../../types/types';
+import ArticleForm from '../../articleForm/ArticleForm';
+import ArticleBigCard from './articleBigCard/ArticleBigCard';
 import styles from './ArticlePage.module.scss';
 
 

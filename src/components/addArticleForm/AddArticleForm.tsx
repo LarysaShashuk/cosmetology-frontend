@@ -5,14 +5,14 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import {NewArticleType} from '../../types/types';
+import {AddArticleFormType} from '../../types/types';
 import { addArticle } from '../../redux/actions';
-import styles from './NewArticle.module.scss';
-import ArticleForm from './ArticleForm';
+import styles from './AddArticleForm.module.scss';
+import ArticleForm from '../articleForm/ArticleForm';
 
-function NewArticle() {
+export default function AddArticleForm() {
   const [isAddArticleVisible, setAddArticleVisible] = useState(false);
-  const initialValues: NewArticleType = {  title: '', text: '' };
+  const initialValues: AddArticleFormType = {  title: '', text: '' };
 
   let dispatch: any = useDispatch();
   const handleAddArticle = (newOne: any) => {
@@ -37,13 +37,13 @@ function NewArticle() {
 
   return (
     <>
-      {toggleButton('Add new article', () => setAddArticleVisible(true))}
+      {toggleButton('Додати нову статтю', () => setAddArticleVisible(true))}
       {isAddArticleVisible && (
         <ArticleForm
           initialValues={initialValues}
           handleReduxAction={handleAddArticle}
           handleClose={() => setAddArticleVisible(false)}
-          heading="New article adding..."
+          heading="Створення нової статті..."
           isAddingArticle
         />
       )}
@@ -51,4 +51,3 @@ function NewArticle() {
   );
 }
 
-export default NewArticle;

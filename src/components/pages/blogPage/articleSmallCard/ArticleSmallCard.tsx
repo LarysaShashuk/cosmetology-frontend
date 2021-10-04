@@ -12,8 +12,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import {ArticleCardTypes} from '../../types/types';
-import ConfirmationWindow from '../common/confirmationWindow/ConfirmationWindow';
+import { ArticleCardTypes } from '../../../../types/types';
+import ConfirmationWindow from '../../../common/confirmationWindow/ConfirmationWindow';
 import styles from './ArticleSmallCard.module.scss';
 
 function ArticleSmallCard(props: ArticleCardTypes) {
@@ -32,42 +32,38 @@ function ArticleSmallCard(props: ArticleCardTypes) {
         <CardActionArea className={styles.blogItemInnerWrap}>
           <Link className={styles.link} to={`/blog/${_id}`}>
             <CardContent>
-              <Typography gutterBottom variant='h5' component='h2'>
+              <Typography gutterBottom variant="h5" component="h2">
                 {title}
               </Typography>
-              <Typography variant='body2' color='textSecondary' component='p'>
+              <Typography variant="body2" color="textSecondary" component="p">
                 {sliceDescription(text)}
               </Typography>
             </CardContent>
           </Link>
         </CardActionArea>
         <CardActions className={styles.actionsWrap}>
-          <Button size='small' variant='contained' color='primary'>
+          <Button size="small" variant="contained" color="primary">
             <Link className={styles.link} to={`/blog/${_id}`}>
-              Read more
+              Прочитати більше
             </Link>
           </Button>
 
           <div className={styles.buttonsWrap}>
-            <Tooltip
-              title='Edit'
-              placement='top-start'
-              onClick={handleFormOpening}
-            >
-              <Fab size='small' color='primary' aria-label='edit'>
+            <Tooltip title="Редагувати" placement="top-start" onClick={handleFormOpening}>
+              <Fab size="small" color="primary" aria-label="edit">
                 <EditIcon />
               </Fab>
             </Tooltip>
 
             <Tooltip
-              title='Delete'
-              placement='top-end'
+              title="Видалити"
+              placement="top-end"
               className={styles.deleteButton}
               onClick={() => {
-            setConfirmationWindowOpen(true);
-          }}
+                setConfirmationWindowOpen(true);
+              }}
             >
-              <Fab size='small' color='secondary' aria-label='delete'>
+              <Fab size="small" color="secondary" aria-label="delete">
                 <DeleteIcon />
               </Fab>
             </Tooltip>
@@ -76,7 +72,7 @@ function ArticleSmallCard(props: ArticleCardTypes) {
       </Card>
       {confirmationWindowIsOpen && (
         <ConfirmationWindow
-          title='Are you sure you want to delete this article?'
+          title="Ви впевнені, що хочете видалити цю статтю?"
           deleteAction={() => handleDeleteArticle(_id)}
           cancelAction={() => {
             setConfirmationWindowOpen(false);

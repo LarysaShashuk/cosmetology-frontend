@@ -10,18 +10,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-import {ArticleFormPropsType} from '../../types/types';
+import { ArticleFormPropsType } from '../../types/types';
 import styles from './ArticleForm.module.scss';
 
 export default function ArticleForm(props: ArticleFormPropsType) {
-  const {
-    initialValues,
-    handleReduxAction,
-    heading,
-    handleClose,
-    isAddingArticle,
-    isArticlePage
-  } = props;
+  const { initialValues, handleReduxAction, heading, handleClose, isAddingArticle, isArticlePage } =
+    props;
   const createId = () => new Date().getTime().toString();
 
   return (
@@ -30,9 +24,10 @@ export default function ArticleForm(props: ArticleFormPropsType) {
         initialValues={initialValues}
         validationSchema={Yup.object({
           title: Yup.string()
-            .min(5, 'Must be 5 characters at least')
-            .required('Required'),
-          text: Yup.string().required('Required'),
+
+            .required('Це поле є обов`язковим.')
+            .min(5, 'Назва має містити, щонайменше 5 символів'),
+          text: Yup.string().required('Це поле є обов`язковим.'),
         })}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
@@ -50,46 +45,38 @@ export default function ArticleForm(props: ArticleFormPropsType) {
             <Card className={styles.form}>
               <CardContent>
                 {heading && (
-                  <Typography gutterBottom variant='h5' component='h2'>
+                  <Typography gutterBottom variant="h5" component="h2">
                     {heading}
                   </Typography>
                 )}
 
                 <div className={styles.inputsBlock}>
                   <TextField
-                    id='title'
+                    id="title"
                     {...formik.getFieldProps('title')}
                     className={styles.titleInput}
-                    label='Title'
-                    variant='outlined'
+                    label="Заголовок"
+                    variant="outlined"
                     multiline
-                    size='small'
-                    error={
-                      formik.touched.title && formik.errors.title ? true : false
-                    }
+                    size="small"
+                    error={formik.touched.title && formik.errors.title ? true : false}
                     helperText={
-                      formik.touched.title && formik.errors.title
-                        ? formik.errors.title
-                        : null
+                      formik.touched.title && formik.errors.title ? formik.errors.title : null
                     }
                   />
 
                   <TextField
-                    id='text'
+                    id="text"
                     {...formik.getFieldProps('text')}
                     className={styles.textInput}
-                    label='Text'
-                    variant='outlined'
+                    label="Текст"
+                    variant="outlined"
                     multiline
-                    size='small'
+                    size="small"
                     rows={20}
-                    error={
-                      formik.touched.text && formik.errors.text ? true : false
-                    }
+                    error={formik.touched.text && formik.errors.text ? true : false}
                     helperText={
-                      formik.touched.text && formik.errors.text
-                        ? formik.errors.text
-                        : null
+                      formik.touched.text && formik.errors.text ? formik.errors.text : null
                     }
                   />
                 </div>
@@ -100,24 +87,24 @@ export default function ArticleForm(props: ArticleFormPropsType) {
                   <Button
                     className={styles.submitButton}
                     disabled={!formik.isValid}
-                    size='small'
-                    variant='contained'
-                    color='primary'
-                    type='submit'
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    type="submit"
                   >
-                    Submit
+                    Зберегти
                   </Button>
                   <Button
                     className={styles.closeButton}
-                    size='small'
-                    variant='contained'
-                    color='secondary'
+                    size="small"
+                    variant="contained"
+                    color="secondary"
                     onClick={() => {
                       formik.resetForm();
                       handleClose();
                     }}
                   >
-                    Close
+                    Скасувати
                   </Button>
                 </div>
               </CardActions>

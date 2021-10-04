@@ -14,7 +14,7 @@ export interface RootState{
 blog: BlogStateType,
 }
 
-export interface NewArticleType {
+export interface AddArticleFormType {
  _id?: string;
   title: string;
   text: string;
@@ -31,7 +31,7 @@ export interface UseParamsTypes {
 }
 
 export interface ArticleFormPropsType {
-  initialValues: NewArticleType;
+  initialValues: AddArticleFormType;
   handleReduxAction: any;
   handleClose: any;
   heading?: string;

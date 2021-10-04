@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import {BlogItemType, ArticleType} from '../../types/types';
-import { updateArticle, deleteArticle } from '../../redux/actions';
-import ArticleForm from '../newArticle/ArticleForm';
-import ArticleSmallCard from './ArticleSmallCard';
+import {BlogItemType, ArticleType} from '../../../../types/types';
+import { updateArticle, deleteArticle } from '../../../../redux/actions';
+import ArticleForm from '../../../articleForm/ArticleForm';
+import ArticleSmallCard from '../articleSmallCard/ArticleSmallCard';
 
 
 

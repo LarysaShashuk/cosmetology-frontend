@@ -12,10 +12,10 @@ export default function Placeholder(){
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2' >
-            There are no blog articles yet.
+            Поки що немає статей у блозі.
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
-              You can create a new acticle with click on the "+" button above.
+              Ви можете додати статтю натиснувши на кнопку "+" , що знаходиться вище.
             </Typography>
         </CardContent>
       </CardActionArea>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { ACTIONS_TYPES } from './index';
-import {ArticleType, NewArticleType} from '../../types/types';
+import {ArticleType, AddArticleFormType} from '../../types/types';
 
 const getArticle = (articles: ArticleType[]) => ({
   type: ACTIONS_TYPES.GET_ARTICLES,
@@ -52,7 +52,7 @@ export const deleteArticle = (articleID: string) => {
   };
 };
 
-export const addArticle = (newArticle: NewArticleType) => {
+export const addArticle = (newArticle: AddArticleFormType) => {
   return function (dispatch: any) {
     axios
       .post(`${process.env.REACT_APP_API}`, newArticle)

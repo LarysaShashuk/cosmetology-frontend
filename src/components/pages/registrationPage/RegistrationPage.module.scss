@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.inputsBlock {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+}
+
+.form {
+  width: 350px;
+}
+
+.inputsBlock {
+  .emailInput,
+  .passwordInput,
+  .firstNameInput,
+  .lastNameInput,
+  .fatherNameInput,
+  .phoneInput {
+    margin-bottom: 15px;
+  }
+}
+
+.submitButton {
+  margin: 16px;
+  margin-top: 0;
+}
