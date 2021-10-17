@@ -8,9 +8,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-import styles from './AuthorizationPage.module.scss';
+import {login} from '../../../redux/actions/userActions';
+import styles from './LoginPage.module.scss';
 
-export default function AuthorizationPage() {
+export default function LoginPage() {
   return (
     <div className={styles.container}>
       <Formik
@@ -19,15 +20,11 @@ export default function AuthorizationPage() {
           email: Yup.string().email().required('Це поле є обов`язковим.'),
           password: Yup.string()
             .required('Це поле є обов`язковим.')
-            .min(3, 'Пароль повинен включати, щонаймеше 3 символи.')
-            .matches(/(?=.*[0-9])/, 'Пароль повинен містити цифру.')
-            .matches(/(?=.*[A-Z])/, 'Пароль повинен містити велику літеру.')
-            .matches(/(?=.*[a-z])/, 'Пароль повинен містити малу літеру'),
         })}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
           actions.resetForm();
-          console.log(values);
+          login(values.email, values.password);
         }}
       >
         {(formik) => (

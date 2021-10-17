@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
+import {registration} from '../../../redux/actions/userActions';
 import styles from './RegistrationPage.module.scss';
 
 export default function RegistrationPage() {
@@ -29,15 +30,17 @@ export default function RegistrationPage() {
           lastName: Yup.string().required('Це поле є обов`язковим.'),
           fatherName: Yup.string().required('Це поле є обов`язковим.'),
           phone: Yup.string()
-            .required('Це поле є обов`язковим.')
-            .phone(undefined, undefined, 'Номер телефону повин відповідати прикладу: +380111111111'),
+            .required('Це поле є обов`язковим.'),
+            // .phone(undefined, undefined, 'Номер телефону повин відповідати прикладу: +380111111111.'),
           email: Yup.string().email('Електронна пошта повинна відповідати прикладу: example@example.com').required('Це поле є обов`язковим.'),
           password: Yup.string()
             .required('Це поле є обов`язковим.')
             .min(3, 'Пароль повинен включати, щонаймеше 3 символи.')
-            .matches(/(?=.*[0-9])/, 'Пароль повинен містити цифру.')
-            .matches(/(?=.*[A-Z])/, 'Пароль повинен містити велику літеру.')
-            .matches(/(?=.*[a-z])/, 'Пароль повинен містити малу літеру'),
+            // .matches(/(?=.*[0-9])/, 'Пароль повинен містити цифру.')
+            // .matches(/(?=.*[A-Z])/, 'Пароль повинен містити велику літеру.')
+            // .matches(/(?=.*[a-z])/, 'Пароль повинен містити малу літеру.')
+            .max(32, 'Пароль повинен включати не більше ніж 32 символи.')
+            ,
           passwordConfirmation: Yup.string()
             .required('Це поле є обов`язковим.')
             .oneOf([Yup.ref('password'), null], 'Паролі повинні співпадати.'),
@@ -45,7 +48,10 @@ export default function RegistrationPage() {
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
           actions.resetForm();
-          console.log(values);
+          //console.log(values);
+          const { email, password, firstName, lastName, fatherName, phone } = values;
+          const userData={ email, password, firstName, lastName, fatherName, phone };
+          registration(userData);
         }}
       >
         {(formik) => (

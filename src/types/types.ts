@@ -10,12 +10,12 @@ export interface BlogStateType {
   loading: boolean;
 }
 
-export interface RootState{
-blog: BlogStateType,
+export interface RootState {
+  blog: BlogStateType;
 }
 
 export interface AddArticleFormType {
- _id?: string;
+  _id?: string;
   title: string;
   text: string;
 }
@@ -50,6 +50,20 @@ export interface ConfirmationWindowProps {
 }
 
 export interface ErrorPageProps {
-statusCode?: string;
-errorMessage: string;
+  statusCode?: string;
+  errorMessage: string;
+}
+
+export interface UserDataType {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  fatherName: string;
+  phone: string;
+}
+
+export interface UserStateType {
+  currentUser: any;
+  isAuth: boolean;
 }

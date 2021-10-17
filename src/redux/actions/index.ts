@@ -1,6 +1,6 @@
 import { addArticle, deleteArticle, updateArticle } from './blogActions';
 
-export const ACTIONS_TYPES = {
+export const BLOG_ACTIONS_TYPES = {
   GET_ARTICLES: 'GET_ARTICLES',
   ADD_ARTICLE: 'ADD_ARTICLE',
   DELETE_ARTICLE: 'DELETE_ARTICLE',

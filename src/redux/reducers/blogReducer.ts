@@ -1,25 +1,23 @@
-import {BlogStateType} from '../../types/types';
-import { ACTIONS_TYPES } from '../actions';
+import { BlogStateType } from '../../types/types';
+import { BLOG_ACTIONS_TYPES } from '../actions';
 
 const initialState = {
   articles: [],
-  article: {_id: '',title: '', text: ''},
+  article: { _id: '', title: '', text: '' },
   loading: true,
 };
 
-
-
 const blogReducer = (state: BlogStateType = initialState, action: any) => {
   switch (action.type) {
-    case ACTIONS_TYPES.GET_ARTICLES:
+    case BLOG_ACTIONS_TYPES.GET_ARTICLES:
       return { ...state, articles: action.payload, loading: false };
 
-    case ACTIONS_TYPES.DELETE_ARTICLE:
-        case ACTIONS_TYPES.ADD_ARTICLE:
-        case ACTIONS_TYPES.EDIT_ARTICLE:
+    case BLOG_ACTIONS_TYPES.DELETE_ARTICLE:
+    case BLOG_ACTIONS_TYPES.ADD_ARTICLE:
+    case BLOG_ACTIONS_TYPES.EDIT_ARTICLE:
       return { ...state, loading: false };
 
-    case ACTIONS_TYPES.GET_SINGLE_ARTICLE:
+    case BLOG_ACTIONS_TYPES.GET_SINGLE_ARTICLE:
       return { ...state, article: action.payload, loading: false };
 
     default:
