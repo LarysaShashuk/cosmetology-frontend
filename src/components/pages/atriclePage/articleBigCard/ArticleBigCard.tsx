@@ -11,11 +11,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import {ArticleCardTypes} from '../../../../types/types';
+import { ArticleCardTypes } from '../../../../types/types';
 import ConfirmationWindow from '../../../common/confirmationWindow/ConfirmationWindow';
 import styles from './ArticleBigCard.module.scss';
-
-
 
 const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
   const { article, handleFormOpening, handleDeleteArticle } = props;
@@ -30,43 +28,39 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
         <Card className={styles.blogItemWrap}>
           <CardContent>
             <div className={styles.contentHead}>
-              <Typography gutterBottom variant='h5' component='h2'>
+              <Typography gutterBottom variant="h5" component="h2">
                 {title}
               </Typography>
               <div className={styles.buttonsWrap}>
-                <Tooltip
-                  title='Редагувати'
-                  placement='top-start'
-                  onClick={handleFormOpening}
-                >
-                  <Fab size='small' color='primary' aria-label='edit'>
+                <Tooltip title="Редагувати" placement="top-start" onClick={handleFormOpening}>
+                  <Fab size="small" color="primary" aria-label="edit">
                     <EditIcon />
                   </Fab>
                 </Tooltip>
 
                 <Tooltip
-                  title='Видалити'
-                  placement='top-start'
+                  title="Видалити"
+                  placement="top-start"
                   className={styles.deleteButton}
                   onClick={() => {
                     setConfirmationWindowOpen(true);
                   }}
                 >
-                  <Fab size='small' color='secondary' aria-label='delete'>
+                  <Fab size="small" color="secondary" aria-label="delete">
                     <DeleteIcon />
                   </Fab>
                 </Tooltip>
               </div>
             </div>
 
-            <Typography variant='body2' color='textSecondary' component='p'>
+            <Typography variant="body2" color="textSecondary" component="p">
               {text}
             </Typography>
           </CardContent>
 
           <CardActions>
-            <Button size='small' variant='contained' color='primary'>
-              <Link className={styles.link} to='/'>
+            <Button size="small" variant="contained" color="primary">
+              <Link className={styles.link} to="/blog">
                 Повернутися до блогу
               </Link>
             </Button>
@@ -77,17 +71,17 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
         <Card className={styles.blogItemWrap}>
           <CardContent>
             <div className={styles.contentHead}>
-              <Typography gutterBottom variant='h5' component='h2'>
+              <Typography gutterBottom variant="h5" component="h2">
                 The article was successfully deleted!
               </Typography>{' '}
             </div>
           </CardContent>
 
           <CardActions>
-            <Button size='small' variant='contained' color='primary'>
+            <Button size="small" variant="contained" color="primary">
               <Link
                 className={styles.link}
-                to='/'
+                to="/"
                 onClick={() => {
                   setArticleDeleted(false);
                 }}
@@ -100,7 +94,7 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
       )}
       {confirmationWindowIsOpen && (
         <ConfirmationWindow
-          title='Ви впевнені, що хочете видалити цю статтю?'
+          title="Ви впевнені, що хочете видалити цю статтю?"
           deleteAction={() => {
             handleDeleteArticle(_id);
             setConfirmationWindowOpen(false);
@@ -109,6 +103,8 @@ const ArticleBigCard: React.FC<ArticleCardTypes> = (props) => {
           cancelAction={() => {
             setConfirmationWindowOpen(false);
           }}
+          deleteButton="Видалити"
+          cancelButton="Скасувати"
         />
       )}
     </>

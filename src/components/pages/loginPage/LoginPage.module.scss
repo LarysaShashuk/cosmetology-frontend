@@ -13,6 +13,11 @@
 
 .form {
   width: 350px;
+  background-color: unset;
+
+  .MuiPaper-root{
+  background-color: none !important;
+  }
 }
 
 .inputsBlock {

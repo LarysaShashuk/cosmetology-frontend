@@ -18,7 +18,7 @@ const ArticlePage = () => {
 
   useEffect(() => {
     dispatch(loadSingleArticle(id));
-  }, [dispatch, id]);
+  }, []);
 
   const handleUpdateArticle = (updatedArticle: ArticleType) => {
     dispatch(updateArticle(updatedArticle));

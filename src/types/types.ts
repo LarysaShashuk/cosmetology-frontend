@@ -10,8 +10,16 @@ export interface BlogStateType {
   loading: boolean;
 }
 
+export interface AuthStateType {
+  user: any, 
+  userData: any,
+  loading: boolean,
+  error: any,
+}
+
 export interface RootState {
   blog: BlogStateType;
+  auth: AuthStateType;
 }
 
 export interface AddArticleFormType {
@@ -47,6 +55,8 @@ export interface ConfirmationWindowProps {
   title: string;
   deleteAction: any;
   cancelAction: any;
+  deleteButton: string;
+   cancelButton: string;
 }
 
 export interface ErrorPageProps {
@@ -63,7 +73,4 @@ export interface UserDataType {
   phone: string;
 }
 
-export interface UserStateType {
-  currentUser: any;
-  isAuth: boolean;
-}
+

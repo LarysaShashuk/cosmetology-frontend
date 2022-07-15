@@ -10,7 +10,7 @@ const {statusCode, errorMessage} = props;
 return <div className={styles.errorPageWrap}>
     <h2>{statusCode}</h2>
     <p>{errorMessage}</p>
-    <Link to="/">Повернутися на головну</Link>
+    <Link to="/blog">Повернутися до блогу</Link>
 </div>
 }
 

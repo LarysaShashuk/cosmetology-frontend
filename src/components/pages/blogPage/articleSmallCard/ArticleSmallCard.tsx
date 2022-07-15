@@ -27,7 +27,7 @@ function ArticleSmallCard(props: ArticleCardTypes) {
   };
 
   return (
-    <>
+    < >
       <Card className={styles.blogItemWrap}>
         <CardActionArea className={styles.blogItemInnerWrap}>
           <Link className={styles.link} to={`/blog/${_id}`}>
@@ -77,6 +77,8 @@ function ArticleSmallCard(props: ArticleCardTypes) {
           cancelAction={() => {
             setConfirmationWindowOpen(false);
           }}
+          deleteButton="Видалити"
+          cancelButton="Скасувати"
         />
       )}
     </>

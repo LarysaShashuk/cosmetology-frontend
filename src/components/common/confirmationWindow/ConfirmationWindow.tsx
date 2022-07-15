@@ -11,7 +11,7 @@ import { ConfirmationWindowProps } from '../../../types/types';
 import styles from './ConfirmationWindow.module.scss';
 
 export default function ConfirmationWindow(props: ConfirmationWindowProps) {
-  const { title, deleteAction, cancelAction } = props;
+  const { title, deleteAction, cancelAction, deleteButton, cancelButton } = props;
 
   return (
     <div className={styles.container}>
@@ -25,10 +25,10 @@ export default function ConfirmationWindow(props: ConfirmationWindowProps) {
         </CardActionArea>
         <CardActions className={styles.actionsWrap}>
           <Button size="small" variant="contained" color="secondary" onClick={() => deleteAction()}>
-            Видалити
+            {deleteButton}
           </Button>
           <Button size="small" variant="contained" color="primary" onClick={() => cancelAction()}>
-            Скасувати
+            {cancelButton}
           </Button>
         </CardActions>
       </Card>

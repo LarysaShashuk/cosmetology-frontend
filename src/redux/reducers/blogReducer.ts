@@ -1,5 +1,5 @@
 import { BlogStateType } from '../../types/types';
-import { BLOG_ACTIONS_TYPES } from '../actions';
+import { BLOG_ACTIONS_TYPES, AUTH_ACTIONS_TYPES } from '../actions';
 
 const initialState = {
   articles: [],
@@ -19,6 +19,13 @@ const blogReducer = (state: BlogStateType = initialState, action: any) => {
 
     case BLOG_ACTIONS_TYPES.GET_SINGLE_ARTICLE:
       return { ...state, article: action.payload, loading: false };
+
+    case AUTH_ACTIONS_TYPES.LOGOUT:
+      return {
+        ...state,
+        articles: null,
+        loading: false
+      };
 
     default:
       return state;

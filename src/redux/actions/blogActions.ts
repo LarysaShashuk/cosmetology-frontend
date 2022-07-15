@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import $api from '../../http/index';
 import { BLOG_ACTIONS_TYPES } from './index';
 import {ArticleType, AddArticleFormType} from '../../types/types';
 
@@ -27,21 +26,21 @@ const getSingleArticle = (article: ArticleType) => ({
 
 export const loadArticles = () => {
     return function (dispatch: any) {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API_URL}/blog`)
+     $api
+      .get('/blog',)
       .then((response) => {
         dispatch(getArticle(response.data));
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
       });
   };
 };
 
 export const deleteArticle = (articleID: string) => {
   return function (dispatch: any) {
-    axios
-      .delete(`${process.env.REACT_APP_SERVER_API_URL}/blog/${articleID}`)
+     $api
+      .delete(`/blog/${articleID}`,)
       .then((response) => {
         dispatch(articleDeleted());
         dispatch(loadArticles());
@@ -54,8 +53,8 @@ export const deleteArticle = (articleID: string) => {
 
 export const addArticle = (newArticle: AddArticleFormType) => {
   return function (dispatch: any) {
-    axios
-      .post(`${process.env.REACT_APP_SERVER_API_URL}/blog`, newArticle)
+    $api
+      .post(`/blog`, newArticle)
       .then((response) => {
         dispatch(articleAdded());
         dispatch(loadArticles());
@@ -68,8 +67,8 @@ export const addArticle = (newArticle: AddArticleFormType) => {
 
 export const loadSingleArticle = (articleID: string) => {
   return function (dispatch: any) {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API_URL}/blog/${articleID}`)
+     $api
+      .get(`/blog/${articleID}`,)
       .then((response) => {
         dispatch(getSingleArticle(response.data));
       })
@@ -80,10 +79,9 @@ export const loadSingleArticle = (articleID: string) => {
 };
 
 export const updateArticle = (updatedArticle:  ArticleType) => {
-console.log(updatedArticle);
   return function (dispatch: any) {
-    axios
-      .put(`${process.env.REACT_APP_SERVER_API_URL}/blog`, updatedArticle)
+    $api
+      .put(`/blog`, updatedArticle)
       .then((response) => {
         dispatch(articleEdited());
         dispatch(loadArticles());
